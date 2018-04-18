@@ -1,0 +1,72 @@
+#app {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+#app div,
+#app .config-section,
+#app h1 {
+  flex-grow: 1;
+}
+
+.title-type-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#timer {
+  border: 4px solid red;
+  font-size: 3em;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.config-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.config-section h3 {
+  font-size: 1em;
+}
+
+.config-section p {
+  font-size: 2em;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+#timer::before {
+  animation-name: rotation;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  content: "";
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  border: 4px solid;
+  border-color: #7d6b6b #424b56 #4d9c94 #747496;
+}
