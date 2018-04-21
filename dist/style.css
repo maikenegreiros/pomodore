@@ -68,5 +68,12 @@
   height: 200px;
   position: absolute;
   border: 4px solid;
+}
+
+#timer.display-break::before {
+  border-color: #cc1919 #8e0f0f #460404 #400202;
+}
+
+#timer.display-session::before {
   border-color: #7d6b6b #424b56 #4d9c94 #747496;
 }
