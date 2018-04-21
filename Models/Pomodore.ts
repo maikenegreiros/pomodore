@@ -3,22 +3,25 @@ import {Observer} from "../util/Interfaces/Observer"
 import {Mode} from "../Mode"
 import {Timer} from "./Timer"
 
-export class Pomodore implements Subject {
-    private break: number;
-    private session: number;
+export class Pomodore implements Subject, Observer {
     private currentMode: Mode;
-    public timer: Timer;
+    public timerSession: Timer;
+    public timerBreak: Timer;
+    public timerView
     private Observers: Array<Observer>
+    private timesPlayed: number
 
-    public constructor(timer: Timer) {
-        this.break = 5;
-        this.session = 25;
-        this.currentMode = Mode.SESSION;
-        this.timer = timer;
+    public constructor(timerSession: Timer, timerBreak: Timer, timerView) {
+        this.timesPlayed = 0
+        this.currentMode = Mode.BREAK;
+        this.timerSession = timerSession;
+        this.timerView = timerView;
+        this.timerBreak = timerBreak;
         this.Observers = [];
     }
 
-    public attach(observer: Observer): this {
+    public attach(observer: Observer): this
+    {
         this.Observers.push(observer);
         return this;
     }
@@ -28,26 +31,51 @@ export class Pomodore implements Subject {
         return this;
     }
 
-    public notify(data): this {
+    public notify(data):this
+    {
         this.Observers.forEach(observer => observer.update(data));
         return this;
     }
 
-    public setBreak(value:number): this
+    public update(data): this
     {
-        this.break = value;
+        if (!data.minutes && !data.seconds && this.timesPlayed < 1) {
+            this.play()
+            this.timesPlayed ++
+        }
         return this;
     }
 
-    public setSession(value:number): this
+    public alternateTimers(): this
     {
-        this.session = value;
+        if (this.currentMode === Mode.SESSION) {
+            this.currentMode = Mode.BREAK
+            this.notify(this.currentMode)
+            this.timerBreak.attach(this)
+            this.timerSession.detach(this)
+        } else {
+            this.currentMode = Mode.SESSION
+            this.notify(this.currentMode)
+            this.timerSession.attach(this)
+            this.timerBreak.detach(this)
+        }
+
         return this;
     }
 
     public play(): this
     {
-        this.timer.countDown(this[this.currentMode])
+        this.alternateTimers()
+
+        if (this.currentMode === Mode.SESSION) {
+            this.timerSession.countDown()
+            this.timerSession.attach(this.timerView)
+            this.timerBreak.detach(this.timerView)
+        } else {
+            this.timerBreak.countDown()
+            this.timerBreak.attach(this.timerView)
+            this.timerSession.detach(this.timerView)
+        }
         return this
     }
 }
