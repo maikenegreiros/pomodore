@@ -1,4 +1,4 @@
 export enum Mode {
-    BREAK = "break",
-    SESSION = "session",
+    BREAK = "Break",
+    SESSION = "Session",
 }
