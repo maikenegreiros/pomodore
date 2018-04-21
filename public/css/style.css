@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #0c0c0c;
   flex-direction: column;
   text-align: center;
   padding: 20px;
@@ -88,7 +89,7 @@ body {
   width: 200px;
   height: 200px;
   position: absolute;
-  border: 4px solid;
+  border: 4px solid #fff;
 }
 
 #timer.display-break::before {
@@ -97,4 +98,8 @@ body {
 
 #timer.display-session::before {
   border-color: #7d6b6b #424b56 #4d9c94 #747496;
+}
+
+#timer p {
+  color: white;
 }
