@@ -19,7 +19,7 @@ export class TimerView implements Observer {
         if(seconds === "60") seconds = "00"
         if(seconds.length === 1) seconds = `0${seconds}`
 
-        this.timerDisplay.innerHTML = `${minutes}:${seconds}`;
+        this.time.innerHTML = `${minutes}:${seconds}`;
 
         if (time.minutes || time.seconds) {
             this.button.disabled = true
