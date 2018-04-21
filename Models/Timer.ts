@@ -1,7 +1,6 @@
 import {Subject} from "../util/Interfaces/Subject"
 import {Observer} from "../util/Interfaces/Observer"
 
-
 export class Timer implements Subject {
     private minutes: number;
     private seconds: number;
@@ -13,7 +12,8 @@ export class Timer implements Subject {
         this.seconds = 60;
     }
 
-    public attach(observer: Observer): this {
+    public attach(observer: Observer): this
+    {
         this.Observers.push(observer);
         return this;
     }
@@ -23,20 +23,27 @@ export class Timer implements Subject {
         return this;
     }
 
-    public notify(data):this {
+    public notify(data):this
+    {
         this.Observers.forEach(observer => observer.update(data));
         return this;
     }
 
-    public countDown(minutes: number): this	{
+    public setTime(minutes: number): this
+    {
+        this.minutes = minutes;
+        return this;
+    }
+
+    public countDown(): this
+    {
         if(this.timerId) {
             clearInterval(this.timerId)
             this.seconds = 60;
         }
-        this.minutes = minutes
         this.notify({
             minutes: this.minutes,
-            seconds: this.seconds
+            seconds: this.seconds,
         })
         this.minutes--
         this.timerId = setInterval(() => {
@@ -44,12 +51,15 @@ export class Timer implements Subject {
 
             this.notify({
                 minutes: this.minutes,
-                seconds: this.seconds
+                seconds: this.seconds,
             })
 
             if(!this.seconds && !this.minutes) {
                 clearInterval(this.timerId)
-                this.playAlarm();
+                this.notify({
+                    minutes: this.minutes,
+                    seconds: this.seconds,
+                })
             } else if(!this.seconds) {
                 this.seconds = 60
                 this.minutes--
@@ -57,10 +67,5 @@ export class Timer implements Subject {
         }, 1000)
 
         return this
-    }
-
-    private playAlarm(): this
-    {
-        return this;
     }
 }
