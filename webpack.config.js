@@ -7,7 +7,7 @@ module.exports = {
         extensions: ['.js','.ts']
     },
     output: {
-        // path: __dirname + "/public/js/",
+        path: __dirname + "/public/js/",
         filename: '[name]-bundle.js'
     },
     module: {
