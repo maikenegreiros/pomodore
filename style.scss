@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Abel');
 @mixin centered {
     display: flex;
     align-items: center;
@@ -22,18 +23,34 @@
     text-align: center;
     padding: 20px;
 }
+body {font-family: 'Abel', sans-serif;}
 #app div,
 #app .config-section,
 #app h1 {
     flex-grow: 1;
+}
+.pomodore-title {
+    font-size: 3em;
+    color: #0056ff;
 }
 .title-type-container {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
+.timer-type {
+    font-size: 2em;
+}
+.config-title {
+    font-size: 1.5em;
+}
+.title-session {
+    color: #227369;
+}
+.title-break {
+    color: #732222;
+}
 #timer {
-    border: 4px solid red;
     font-size: 3em;
     @include rounded(200px);
     @include centered;
@@ -41,9 +58,6 @@
 .config-section {
     @include centered;
     width: 100%;
-}
-.config-section h3 {
-    font-size: 1em;
 }
 .config-section p {
     font-size: 2em;
