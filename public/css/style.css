@@ -96,6 +96,13 @@ body {
   width: 90px;
   height: 90px;
   border: 4px solid;
+  cursor: pointer;
+}
+
+.bt-apply[disabled] {
+  color: #525252;
+  border-color: #525252;
+  cursor: not-allowed;
 }
 
 @keyframes rotation {
