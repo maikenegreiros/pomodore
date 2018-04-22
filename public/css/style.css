@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Abel");
+html, body, #app {
+  height: 100%;
+}
+
 #app {
   position: absolute;
   top: 0;
@@ -8,6 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  bottom: auto;
   background-color: #0c0c0c;
   flex-direction: column;
   text-align: center;
@@ -25,6 +30,9 @@ body {
 }
 
 .pomodore-title {
+  display: flex;
+  align-items: center;
+  margin: 0;
   font-size: 3em;
   color: #0056ff;
 }
@@ -70,6 +78,24 @@ body {
 
 .config-section p {
   font-size: 2em;
+}
+
+.config-section input {
+  color: white;
+  background-color: #0c0c0c;
+  padding: 10px;
+  max-width: 50px;
+}
+
+.bt-apply {
+  color: white;
+  background-color: #0c0c0c;
+  padding: 15px;
+  border-radius: 50%;
+  text-transform: uppercase;
+  width: 90px;
+  height: 90px;
+  border: 4px solid;
 }
 
 @keyframes rotation {

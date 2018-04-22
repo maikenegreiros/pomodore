@@ -16,9 +16,13 @@
     width: $size;
     height: $size;
 }
+html, body, #app {
+    height: 100%;
+}
 #app {
     @include extended;
     @include centered;
+    bottom: auto;
     background-color: #0c0c0c;
     flex-direction: column;
     text-align: center;
@@ -31,6 +35,9 @@ body {font-family: 'Abel', sans-serif;}
     flex-grow: 1;
 }
 .pomodore-title {
+    display: flex;
+    align-items: center;
+    margin: 0;
     font-size: 3em;
     color: #0056ff;
 }
@@ -62,6 +69,22 @@ body {font-family: 'Abel', sans-serif;}
 }
 .config-section p {
     font-size: 2em;
+}
+.config-section input {
+    color: white;
+    background-color: #0c0c0c;
+    padding: 10px;
+    max-width: 50px;
+}
+.bt-apply {
+    color: white;
+    background-color: #0c0c0c;
+    padding: 15px;
+    border-radius: 50%;
+    text-transform: uppercase;
+    width: 90px;
+    height: 90px;
+    border: 4px solid;
 }
 @keyframes rotation {
     from {transform:rotate(0);}
