@@ -2,16 +2,17 @@ import {Subject} from "../util/Interfaces/Subject"
 import {Observer} from "../util/Interfaces/Observer"
 import {Mode} from "../Mode"
 import {Timer} from "./Timer"
+import {TimerView} from "../Views/TimerView"
 
 export class Pomodore implements Subject, Observer {
     private currentMode: Mode;
     public timerSession: Timer;
     public timerBreak: Timer;
-    public timerView
+    public timerView: TimerView;
     private Observers: Array<Observer>
     private timesPlayed: number
 
-    public constructor(timerSession: Timer, timerBreak: Timer, timerView) {
+    public constructor(timerSession: Timer, timerBreak: Timer, timerView: TimerView) {
         this.timesPlayed = 0
         this.currentMode = Mode.BREAK;
         this.timerSession = timerSession;
